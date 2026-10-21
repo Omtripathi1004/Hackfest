@@ -1,0 +1,65 @@
+record_id,state_code,state_name,district_name,market_name,market_id,commodity_canonical,raw_commodity_name,variety,arrival_date,modal_price,min_price,max_price,arrivals_tonnes,distance_km
+1,UP,Uttar Pradesh,Lucknow,Lucknow (Dubagga),UP_LKO_01,wheat,Gehun,Dara FAQ,2026-10-21,2475,2440,2500,120,12
+2,UP,Uttar Pradesh,Lucknow,Lucknow (Dubagga),UP_LKO_01,wheat,Gehun,Dara FAQ,2026-10-20,2460,2430,2485,115,12
+3,UP,Uttar Pradesh,Lucknow,Lucknow (Dubagga),UP_LKO_01,wheat,Gehun,Dara FAQ,2026-10-19,2450,2420,2475,130,12
+4,UP,Uttar Pradesh,Lucknow,Lucknow (Dubagga),UP_LKO_01,wheat,Gehun,Dara FAQ,2026-10-18,2450,2420,2470,125,12
+5,UP,Uttar Pradesh,Lucknow,Lucknow (Dubagga),UP_LKO_01,wheat,Gehun,Dara FAQ,2026-10-16,2435,2410,2455,140,12
+6,UP,Uttar Pradesh,Lucknow,Lucknow (Dubagga),UP_LKO_01,wheat,Gehun,Dara FAQ,2026-10-15,2420,2400,2440,150,12
+7,UP,Uttar Pradesh,Kanpur Nagar,Kanpur (Chakeri),UP_KNP_01,wheat,Wheat (Dara),FAQ,2026-10-21,2520,2480,2550,280,64
+8,UP,Uttar Pradesh,Kanpur Nagar,Kanpur (Chakeri),UP_KNP_01,wheat,Wheat (Dara),FAQ,2026-10-20,2510,2475,2540,290,64
+9,UP,Uttar Pradesh,Kanpur Nagar,Kanpur (Chakeri),UP_KNP_01,wheat,Wheat (Dara),FAQ,2026-10-19,2495,2460,2520,310,64
+10,UP,Uttar Pradesh,Kanpur Nagar,Kanpur (Chakeri),UP_KNP_01,wheat,Wheat (Dara),FAQ,2026-10-17,2490,2450,2510,270,64
+11,UP,Uttar Pradesh,Kanpur Nagar,Kanpur (Chakeri),UP_KNP_01,wheat,Wheat (Dara),FAQ,2026-10-16,2480,2440,2500,260,64
+12,UP,Uttar Pradesh,Kanpur Nagar,Kanpur (Chakeri),UP_KNP_01,wheat,Wheat (Dara),FAQ,2026-10-15,2470,2430,2490,300,64
+13,UP,Uttar Pradesh,Barabanki,Barabanki Mandi,UP_BBK_01,wheat,Gahu,Common,2026-10-21,2455,2420,2480,95,28
+14,UP,Uttar Pradesh,Barabanki,Barabanki Mandi,UP_BBK_01,wheat,Gahu,Common,2026-10-20,2440,2410,2465,100,28
+15,UP,Uttar Pradesh,Barabanki,Barabanki Mandi,UP_BBK_01,wheat,Gahu,Common,2026-10-18,2430,2400,2450,85,28
+16,UP,Uttar Pradesh,Barabanki,Barabanki Mandi,UP_BBK_01,wheat,Gahu,Common,2026-10-16,2415,2390,2435,90,28
+17,UP,Uttar Pradesh,Barabanki,Barabanki Mandi,UP_BBK_01,wheat,Gahu,Common,2026-10-15,2400,2380,2420,110,28
+18,UP,Uttar Pradesh,Sitapur,Sitapur APMC,UP_STP_01,wheat,Gehun,Medium,2026-10-21,2430,2400,2460,110,88
+19,UP,Uttar Pradesh,Sitapur,Sitapur APMC,UP_STP_01,wheat,Gehun,Medium,2026-10-19,2420,2390,2445,95,88
+20,UP,Uttar Pradesh,Sitapur,Sitapur APMC,UP_STP_01,wheat,Gehun,Medium,2026-10-17,2410,2380,2430,80,88
+21,UP,Uttar Pradesh,Sitapur,Sitapur APMC,UP_STP_01,wheat,Gehun,Medium,2026-10-15,2400,2375,2420,90,88
+22,UP,Uttar Pradesh,Lucknow,Malihabad,UP_LKO_02,wheat,Gehun,Desi,2026-10-14,2390,2350,2410,35,26
+23,UP,Uttar Pradesh,Barabanki,Safdarganj,UP_BBK_02,wheat,Gahu,Common,2026-10-14,2385,2350,2410,40,42
+24,UP,Uttar Pradesh,Lucknow,Mohanlalganj APMC,UP_LKO_03,wheat,Gehun,FAQ,2026-10-17,2415,2380,2440,60,32
+25,UP,Uttar Pradesh,Pratapgarh,Pratapgarh APMC,UP_PBH_01,wheat,Gehun,Medium,2026-10-21,2460,2425,2485,75,142
+26,UP,Uttar Pradesh,Pratapgarh,Pratapgarh APMC,UP_PBH_01,wheat,Gehun,Medium,2026-10-20,2450,2415,2475,80,142
+27,UP,Uttar Pradesh,Pratapgarh,Pratapgarh APMC,UP_PBH_01,wheat,Gehun,Medium,2026-10-18,2440,2400,2465,70,142
+28,RJ,Rajasthan,Pratapgarh,Pratapgarh Krishi Mandi,RJ_PBH_01,wheat,Gehun,Malvi,2026-10-21,2540,2500,2580,180,680
+29,RJ,Rajasthan,Pratapgarh,Pratapgarh Krishi Mandi,RJ_PBH_01,wheat,Gehun,Malvi,2026-10-19,2530,2490,2565,190,680
+30,UP,Uttar Pradesh,Lucknow,Lucknow (Dubagga),UP_LKO_01,potato,Aloo (Jyoti),Jyoti,2026-10-21,1790,1650,1890,310,12
+31,UP,Uttar Pradesh,Lucknow,Lucknow (Dubagga),UP_LKO_01,potato,Aloo (Jyoti),Jyoti,2026-10-20,1760,1620,1860,290,12
+32,UP,Uttar Pradesh,Lucknow,Lucknow (Dubagga),UP_LKO_01,potato,Aloo (Jyoti),Jyoti,2026-10-19,1740,1600,1840,270,12
+33,UP,Uttar Pradesh,Lucknow,Lucknow (Dubagga),UP_LKO_01,potato,Aloo (Jyoti),Jyoti,2026-10-18,1740,1600,1820,250,12
+34,UP,Uttar Pradesh,Lucknow,Lucknow (Dubagga),UP_LKO_01,potato,Aloo (Jyoti),Jyoti,2026-10-17,1720,1580,1810,240,12
+35,UP,Uttar Pradesh,Lucknow,Lucknow (Dubagga),UP_LKO_01,potato,Aloo (Jyoti),Jyoti,2026-10-16,1700,1560,1790,260,12
+36,UP,Uttar Pradesh,Lucknow,Lucknow (Dubagga),UP_LKO_01,potato,Aloo (Jyoti),Jyoti,2026-10-15,1680,1540,1760,280,12
+37,UP,Uttar Pradesh,Barabanki,Barabanki Mandi,UP_BBK_01,potato,Aloo (Desi),Desi,2026-10-21,1860,1720,1950,145,28
+38,UP,Uttar Pradesh,Barabanki,Barabanki Mandi,UP_BBK_01,potato,Aloo (Desi),Desi,2026-10-20,1810,1690,1900,130,28
+39,UP,Uttar Pradesh,Barabanki,Barabanki Mandi,UP_BBK_01,potato,Aloo (Desi),Desi,2026-10-18,1775,1650,1860,120,28
+40,UP,Uttar Pradesh,Barabanki,Barabanki Mandi,UP_BBK_01,potato,Aloo (Desi),Desi,2026-10-16,1730,1600,1820,115,28
+41,UP,Uttar Pradesh,Barabanki,Barabanki Mandi,UP_BBK_01,potato,Aloo (Desi),Desi,2026-10-15,1710,1580,1800,135,28
+42,UP,Uttar Pradesh,Kanpur Nagar,Kanpur (Chakeri),UP_KNP_01,potato,Potato Red,Red,2026-10-21,1900,1780,1980,490,82
+43,UP,Uttar Pradesh,Kanpur Nagar,Kanpur (Chakeri),UP_KNP_01,potato,Potato Red,Red,2026-10-20,1910,1790,1990,480,82
+44,UP,Uttar Pradesh,Kanpur Nagar,Kanpur (Chakeri),UP_KNP_01,potato,Potato Red,Red,2026-10-18,1920,1800,2010,470,82
+45,UP,Uttar Pradesh,Kanpur Nagar,Kanpur (Chakeri),UP_KNP_01,potato,Potato Red,Red,2026-10-16,1940,1820,2030,460,82
+46,UP,Uttar Pradesh,Sitapur,Sitapur APMC,UP_STP_01,potato,Aloo,Desi,2026-10-19,1810,1700,1880,90,88
+47,UP,Uttar Pradesh,Sitapur,Sitapur APMC,UP_STP_01,potato,Aloo,Desi,2026-10-18,1810,1700,1870,85,88
+48,UP,Uttar Pradesh,Sitapur,Sitapur APMC,UP_STP_01,potato,Aloo,Desi,2026-10-16,1780,1660,1840,75,88
+49,UP,Uttar Pradesh,Barabanki,Barabanki Mandi,UP_BBK_01,mustard,Sarson (Pili),Yellow,2026-10-21,5820,5550,6000,85,28
+50,UP,Uttar Pradesh,Barabanki,Barabanki Mandi,UP_BBK_01,mustard,Sarson (Pili),Yellow,2026-10-20,5760,5500,5920,80,28
+51,UP,Uttar Pradesh,Barabanki,Barabanki Mandi,UP_BBK_01,mustard,Sarson (Pili),Yellow,2026-10-18,5690,5450,5850,75,28
+52,UP,Uttar Pradesh,Lucknow,Lucknow (Dubagga),UP_LKO_01,mustard,Mustard Black,Black,2026-10-21,5710,5480,5880,120,12
+53,UP,Uttar Pradesh,Lucknow,Lucknow (Dubagga),UP_LKO_01,mustard,Mustard Black,Black,2026-10-20,5715,5490,5890,110,12
+54,MP,Madhya Pradesh,Indore,Indore Mandi,MP_IND_01,wheat,Gehun Lokwan,Lokwan,2026-10-21,2680,2600,2750,420,780
+55,MP,Madhya Pradesh,Indore,Indore Mandi,MP_IND_01,wheat,Gehun Lokwan,Lokwan,2026-10-20,2670,2590,2730,410,780
+56,MP,Madhya Pradesh,Ujjain,Ujjain APMC,MP_UJN_01,wheat,Gehun Sharbati,Sharbati,2026-10-21,2710,2620,2780,310,740
+57,MP,Madhya Pradesh,Ujjain,Ujjain APMC,MP_UJN_01,wheat,Gehun Sharbati,Sharbati,2026-10-19,2690,2600,2760,300,740
+58,MH,Maharashtra,Nashik,Nashik (Pimpalgaon),MH_NSK_01,onion,Kanda (Nashik Red),Red,2026-10-21,2850,2400,3200,950,1180
+59,MH,Maharashtra,Nashik,Nashik (Pimpalgaon),MH_NSK_01,onion,Kanda (Nashik Red),Red,2026-10-20,2780,2350,3120,920,1180
+60,MH,Maharashtra,Nashik,Nashik (Pimpalgaon),MH_NSK_01,onion,Kanda (Nashik Red),Red,2026-10-18,2650,2250,2980,890,1180
+61,UP,Uttar Pradesh,Lucknow,Lucknow (Dubagga),UP_LKO_01,tomato,Tamatar Desi,Hybrid,2026-10-21,1420,1200,1650,180,12
+62,UP,Uttar Pradesh,Lucknow,Lucknow (Dubagga),UP_LKO_01,tomato,Tamatar Desi,Hybrid,2026-10-20,1480,1250,1700,195,12
+63,UP,Uttar Pradesh,Lucknow,Lucknow (Dubagga),UP_LKO_01,paddy,Dhan (Basmati 1509),Basmati,2026-10-21,3450,3300,3580,220,12
+64,UP,Uttar Pradesh,Barabanki,Barabanki Mandi,UP_BBK_01,paddy,Dhan Common,Common,2026-10-21,2280,2200,2350,160,28
