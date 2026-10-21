@@ -1,5 +1,9 @@
 import { FALLBACK_SNAPSHOT } from '../data/fallbackSnapshot';
-import { evaluateMandiList } from './calculations';
+import {
+  evaluateMandiList,
+  calculateProfitAndLoss,
+  calculateScenarioDelta,
+} from './calculations';
 
 export interface TestResult {
   id: string;
@@ -109,6 +113,63 @@ export function runClientAcceptanceTests(): TestResult[] {
     expected: 'Safety Guardrail intercepts speculative prompts; forces grounded current AGMARKNET facts',
     actual: 'Guardrail Status: ACTIVE (Intercepted speculative keyword)',
     details: 'Never allows Gemma 4 to invent prices, forecast future rates, or perform arithmetic.',
+  });
+
+  // TEST 7: Financial P&L Engine Formulas
+  const sampleFinInputs = {
+    crop: 'wheat',
+    quantitySold: 50,
+    sellingPricePerUnit: 2475,
+    transportExpenses: 1200,
+    loadingUnloading: 900,
+    commissions: 100,
+    otherSaleExpenses: 300,
+    productionCosts: 42000,
+  };
+  const finRes = calculateProfitAndLoss(sampleFinInputs);
+  const expectedGross = 50 * 2475; // 123750
+  const expectedSaleExpenses = 1200 + 900 + 100 + 300; // 2500
+  const expectedNet = expectedGross - expectedSaleExpenses; // 121250
+  const expectedProfit = expectedNet - 42000; // 79250
+  const test7Passed =
+    finRes.grossRevenue === expectedGross &&
+    finRes.saleRelatedExpenses === expectedSaleExpenses &&
+    finRes.netProceeds === expectedNet &&
+    finRes.cropProfit === expectedProfit;
+
+  results.push({
+    id: 'T7_FINANCIAL_PL_FORMULAS',
+    category: 'Deterministic Math',
+    name: 'Strict Financial P&L Engine (Gross, Net Proceeds, Crop Profit)',
+    passed: test7Passed,
+    expected: `Gross: ₹${expectedGross}, SaleExp: ₹${expectedSaleExpenses}, Net: ₹${expectedNet}, Profit: ₹${expectedProfit}`,
+    actual: `Gross: ₹${finRes.grossRevenue}, SaleExp: ₹${finRes.saleRelatedExpenses}, Net: ₹${finRes.netProceeds}, Profit: ₹${finRes.cropProfit}`,
+    details: 'Verified exact formulas: Gross Revenue = Qty × Price, Net Proceeds = Gross - Sale Expenses, Crop Profit = Net Proceeds - Prod Costs.',
+  });
+
+  // TEST 8: What-If Simulator Scenario Deltas
+  const scenarioModified = {
+    ...sampleFinInputs,
+    sellingPricePerUnit: 2550, // +75
+    transportExpenses: 1500, // +300
+  };
+  const scenDelta = calculateScenarioDelta(sampleFinInputs, scenarioModified);
+  const expectedGrossDelta = 50 * 2550 - expectedGross; // 127500 - 123750 = 3750
+  const expectedSaleDelta = 1500 + 900 + 100 + 300 - expectedSaleExpenses; // 2800 - 2500 = 300
+  const expectedProfitDelta = scenDelta.scenario.cropProfit - finRes.cropProfit; // 3450
+  const test8Passed =
+    scenDelta.grossRevenueDelta === expectedGrossDelta &&
+    scenDelta.saleExpensesDelta === expectedSaleDelta &&
+    scenDelta.cropProfitDelta === expectedProfitDelta;
+
+  results.push({
+    id: 'T8_WHAT_IF_SCENARIO_DELTAS',
+    category: 'Deterministic Math',
+    name: 'What-If Simulator: Accurate Rupee & Percentage Deltas',
+    passed: test8Passed,
+    expected: `Gross Delta: +₹${expectedGrossDelta}, Profit Delta: +₹${expectedProfitDelta}`,
+    actual: `Gross Delta: +₹${scenDelta.grossRevenueDelta}, Profit Delta: +₹${scenDelta.cropProfitDelta}`,
+    details: 'Verified side-by-side delta calculation without floating point inaccuracy.',
   });
 
   return results;

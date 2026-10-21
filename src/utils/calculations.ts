@@ -167,3 +167,121 @@ export function calculateWhatIf(params: WhatIfParams) {
     requiredBreakEvenAtDistant,
   };
 }
+
+// ============================================================================
+// DEDICATED PROFIT & LOSS CENTRE AND WHAT-IF FINANCIAL ENGINE
+// Strict formulas:
+// Gross Revenue = Quantity Sold × Selling Price Per Unit
+// Sale-Related Expenses = Transport Expenses + Loading/Unloading + Commissions + Other Sale Expenses
+// Estimated Net Proceeds = Gross Revenue - Sale-Related Expenses
+// Estimated Crop Profit = Estimated Net Proceeds - Production Costs
+// ============================================================================
+
+export interface FinancialInputs {
+  crop: string;
+  quantitySold: number;
+  sellingPricePerUnit: number;
+  transportExpenses: number;
+  loadingUnloading: number;
+  commissions: number;
+  otherSaleExpenses: number;
+  productionCosts: number;
+}
+
+export interface FinancialResults {
+  grossRevenue: number;
+  saleRelatedExpenses: number;
+  totalExpenses: number;
+  netProceeds: number;
+  cropProfit: number;
+  profitMarginPct: number;
+  isProfitable: boolean;
+  revenuePerUnit: number;
+  saleExpensesPerUnit: number;
+  netProceedsPerUnit: number;
+  productionCostPerUnit: number;
+  cropProfitPerUnit: number;
+}
+
+export function calculateProfitAndLoss(inputs: FinancialInputs): FinancialResults {
+  const qty = Math.max(0, Number(inputs.quantitySold) || 0);
+  const price = Math.max(0, Number(inputs.sellingPricePerUnit) || 0);
+  const transport = Math.max(0, Number(inputs.transportExpenses) || 0);
+  const loading = Math.max(0, Number(inputs.loadingUnloading) || 0);
+  const comm = Math.max(0, Number(inputs.commissions) || 0);
+  const other = Math.max(0, Number(inputs.otherSaleExpenses) || 0);
+  const prodCost = Math.max(0, Number(inputs.productionCosts) || 0);
+
+  // Exact formulas:
+  // 1. Gross Revenue = Quantity Sold × Selling Price Per Unit
+  const grossRevenue = Number((qty * price).toFixed(2));
+
+  // 2. Sale-Related Expenses = Transport + Loading/Unloading + Commissions + Other Sale Expenses
+  const saleRelatedExpenses = Number((transport + loading + comm + other).toFixed(2));
+
+  // 3. Estimated Net Proceeds = Gross Revenue - Sale-Related Expenses
+  const netProceeds = Number((grossRevenue - saleRelatedExpenses).toFixed(2));
+
+  // 4. Estimated Crop Profit = Estimated Net Proceeds - Production Costs
+  const cropProfit = Number((netProceeds - prodCost).toFixed(2));
+
+  const totalExpenses = Number((saleRelatedExpenses + prodCost).toFixed(2));
+  const profitMarginPct = grossRevenue > 0 ? Number(((cropProfit / grossRevenue) * 100).toFixed(2)) : 0;
+  const isProfitable = cropProfit >= 0;
+
+  return {
+    grossRevenue,
+    saleRelatedExpenses,
+    totalExpenses,
+    netProceeds,
+    cropProfit,
+    profitMarginPct,
+    isProfitable,
+    revenuePerUnit: qty > 0 ? Number((grossRevenue / qty).toFixed(2)) : 0,
+    saleExpensesPerUnit: qty > 0 ? Number((saleRelatedExpenses / qty).toFixed(2)) : 0,
+    netProceedsPerUnit: qty > 0 ? Number((netProceeds / qty).toFixed(2)) : 0,
+    productionCostPerUnit: qty > 0 ? Number((prodCost / qty).toFixed(2)) : 0,
+    cropProfitPerUnit: qty > 0 ? Number((cropProfit / qty).toFixed(2)) : 0,
+  };
+}
+
+export interface ScenarioDelta {
+  baseline: FinancialResults;
+  scenario: FinancialResults;
+  grossRevenueDelta: number;
+  grossRevenueDeltaPct: number;
+  saleExpensesDelta: number;
+  saleExpensesDeltaPct: number;
+  netProceedsDelta: number;
+  netProceedsDeltaPct: number;
+  cropProfitDelta: number;
+  cropProfitDeltaPct: number;
+}
+
+export function calculateScenarioDelta(baseline: FinancialInputs, scenario: FinancialInputs): ScenarioDelta {
+  const baseRes = calculateProfitAndLoss(baseline);
+  const scenRes = calculateProfitAndLoss(scenario);
+
+  const calcPct = (diff: number, base: number) => {
+    if (base === 0) return diff === 0 ? 0 : diff > 0 ? 100 : -100;
+    return Number(((diff / Math.abs(base)) * 100).toFixed(2));
+  };
+
+  const grossRevenueDelta = Number((scenRes.grossRevenue - baseRes.grossRevenue).toFixed(2));
+  const saleExpensesDelta = Number((scenRes.saleRelatedExpenses - baseRes.saleRelatedExpenses).toFixed(2));
+  const netProceedsDelta = Number((scenRes.netProceeds - baseRes.netProceeds).toFixed(2));
+  const cropProfitDelta = Number((scenRes.cropProfit - baseRes.cropProfit).toFixed(2));
+
+  return {
+    baseline: baseRes,
+    scenario: scenRes,
+    grossRevenueDelta,
+    grossRevenueDeltaPct: calcPct(grossRevenueDelta, baseRes.grossRevenue),
+    saleExpensesDelta,
+    saleExpensesDeltaPct: calcPct(saleExpensesDelta, baseRes.saleRelatedExpenses),
+    netProceedsDelta,
+    netProceedsDeltaPct: calcPct(netProceedsDelta, baseRes.netProceeds),
+    cropProfitDelta,
+    cropProfitDeltaPct: calcPct(cropProfitDelta, baseRes.cropProfit),
+  };
+}

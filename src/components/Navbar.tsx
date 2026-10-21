@@ -1,5 +1,5 @@
 import React from 'react';
-import { Database, Wifi, ShieldAlert, Globe, Radio } from 'lucide-react';
+import { Database, Wifi, ShieldAlert, Globe, Radio, Sparkles } from 'lucide-react';
 
 interface NavbarProps {
   currentTab: string;
@@ -8,14 +8,17 @@ interface NavbarProps {
   setLang: (lang: 'hi' | 'en') => void;
   simulateOffline: boolean;
   setSimulateOffline: (offline: boolean) => void;
+  onOpenChat?: () => void;
 }
 
 export const TABS = [
   { id: 'home', labelEn: 'Market Home', labelHi: 'मंडी भाव व मुनाफा', icon: '🌾' },
   { id: 'radar', labelEn: 'Profit Radar', labelHi: 'मंडी मुनाफा तुलना', icon: '📡' },
+  { id: 'map', labelEn: 'Mandi Map', labelHi: 'मंडी मानचित्र व ट्रैकर', icon: '🗺️' },
+  { id: 'finance', labelEn: 'P&L Centre', labelHi: 'आय-व्यय व लाभ केंद्र', icon: '💰' },
+  { id: 'decision', labelEn: 'What-If Simulator', labelHi: 'क्या-अगर सिम्युलेटर', icon: '🧪' },
   { id: 'history', labelEn: 'Price History', labelHi: 'भाव इतिहास व मौन मंडी', icon: '📈' },
   { id: 'gemma', labelEn: 'Gemma 4 Assistant', labelHi: 'Gemma 4 कृषि सहायक', icon: '✨' },
-  { id: 'decision', labelEn: 'Decision Lab', labelHi: 'क्या-अगर सिम्युलेटर', icon: '🧪' },
   { id: 'alerts', labelEn: 'Alerts & 2G Digest', labelHi: 'अलर्ट व SMS डाइजेस्ट', icon: '📲' },
   { id: 'officer', labelEn: 'Data Health & Tests', labelHi: 'डेटा हेल्थ व टेस्ट', icon: '🛡️' },
 ];
@@ -27,6 +30,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   setLang,
   simulateOffline,
   setSimulateOffline,
+  onOpenChat,
 }) => {
   return (
     <header className="bg-[#07130d] border-b border-[#1b3d2b] sticky top-0 z-40 text-stone-100">
@@ -49,6 +53,18 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Global Controls */}
         <div className="flex items-center gap-2 flex-wrap">
+          {/* Gemini Chatbot Trigger Button */}
+          {onOpenChat && (
+            <button
+              onClick={onOpenChat}
+              className="flex items-center gap-1.5 text-xs font-bold bg-[#143021] hover:bg-[#1f4a33] text-[#22c55e] px-3 py-1 rounded-full border border-[#22c55e]/50 transition shadow-[0_0_10px_rgba(34,197,94,0.2)]"
+              title="Open Gemini AI Agricultural Assistant"
+            >
+              <Sparkles className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: '8s' }} />
+              <span>{lang === 'hi' ? 'Gemini AI चैट' : 'Gemini AI Chat'}</span>
+            </button>
+          )}
+
           {/* Snapshot Status Badge */}
           <div className="flex items-center gap-1.5 text-[11px] bg-[#0d2117] px-2.5 py-1 rounded-full border border-[#1b3d2b] text-emerald-300">
             <Database className="w-3.5 h-3.5 text-[#22c55e]" />
@@ -80,7 +96,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* 7 View Tabs */}
+      {/* Navigation Tabs */}
       <nav className="bg-[#0a1b12] border-t border-[#143021] overflow-x-auto no-scrollbar">
         <div className="max-w-7xl mx-auto px-2 flex gap-1 py-1.5">
           {TABS.map((tab) => {

@@ -81,6 +81,23 @@ async def gemma_query_pipeline(
         simulate_offline=req.simulate_offline
     )
 
+@app.post("/api/chat")
+async def chat_endpoint(payload: Dict[str, Any], db: Session = Depends(get_db)):
+    user_msg = payload.get("message", "")
+    history = payload.get("history", [])
+    ctx = payload.get("context", {})
+    # Return grounded reply using pipeline
+    response = await run_gemma_pipeline(
+        db=db,
+        user_query=user_msg,
+        simulate_offline=False
+    )
+    return {
+        "reply": response.stage5_grounded_explanation_hi if ctx.get("lang") == "hi" else response.stage5_grounded_explanation,
+        "provider": "gemma-fastapi-backend",
+        "turns": len(history) + 1
+    }
+
 @app.get("/api/mandis", response_model=List[MandiObservationOut])
 def list_mandis(
     commodity: Optional[str] = None,

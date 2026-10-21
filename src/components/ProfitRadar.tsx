@@ -7,12 +7,16 @@ interface ProfitRadarProps {
   selectedCropKey: string;
   setSelectedCropKey: (key: string) => void;
   lang: 'hi' | 'en';
+  onPreFillFinance?: (mandi: any) => void;
+  onNavigateTab?: (tab: string, mandi?: any) => void;
 }
 
 export const ProfitRadar: React.FC<ProfitRadarProps> = ({
   selectedCropKey,
   setSelectedCropKey,
   lang,
+  onPreFillFinance,
+  onNavigateTab,
 }) => {
   const crop: CropSnapshot = FALLBACK_SNAPSHOT[selectedCropKey] || FALLBACK_SNAPSHOT.wheat;
 
@@ -222,6 +226,7 @@ export const ProfitRadar: React.FC<ProfitRadarProps> = ({
                 <th className="py-3.5 px-4 text-right text-emerald-400 font-black">शुद्ध हाथ में (Net Return)</th>
                 <th className="py-3.5 px-4 text-right">कुल भुगतान ({quantityQtl} Qtl)</th>
                 <th className="py-3.5 px-4 text-center">स्थिति / स्टेटस</th>
+                <th className="py-3.5 px-4 text-center">कार्रवाई</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#143021]">
@@ -320,6 +325,30 @@ export const ProfitRadar: React.FC<ProfitRadarProps> = ({
                       >
                         {m.statusBadge}
                       </span>
+                    </td>
+
+                    {/* Action buttons */}
+                    <td className="py-3.5 px-4 text-center">
+                      <div className="flex items-center justify-center gap-1.5">
+                        {onPreFillFinance && (
+                          <button
+                            onClick={() => onPreFillFinance(m)}
+                            className="bg-[#22c55e] text-[#07130d] hover:bg-[#16a34a] text-[10px] font-black px-2 py-1 rounded transition shadow-sm"
+                            title="Calculate P&L with this mandi"
+                          >
+                            P&L
+                          </button>
+                        )}
+                        {onNavigateTab && (
+                          <button
+                            onClick={() => onNavigateTab('map', m)}
+                            className="bg-[#143021] text-emerald-300 hover:bg-emerald-900 border border-emerald-600/70 text-[10px] font-bold px-2 py-1 rounded transition"
+                            title="View on Mandi Map"
+                          >
+                            Map
+                          </button>
+                        )}
+                      </div>
                     </td>
                   </tr>
                 );

@@ -8,12 +8,14 @@ interface MarketHomeProps {
   selectedCropKey: string;
   setSelectedCropKey: (key: string) => void;
   lang: 'hi' | 'en';
+  onNavigateTab?: (tab: string, mandi?: any) => void;
 }
 
 export const MarketHome: React.FC<MarketHomeProps> = ({
   selectedCropKey,
   setSelectedCropKey,
   lang,
+  onNavigateTab,
 }) => {
   const crop: CropSnapshot = FALLBACK_SNAPSHOT[selectedCropKey] || FALLBACK_SNAPSHOT.wheat;
   const [selectedMandiId, setSelectedMandiId] = useState<string>(crop.mandis[0]?.id || '');
@@ -233,6 +235,22 @@ export const MarketHome: React.FC<MarketHomeProps> = ({
                   ? `भाड़ा (₹${bestMandi.transportCostPerQtl}/क्विंटल) और हम्माली (₹${bestMandi.hammaliCostPerQtl}/क्विंटल) काटने के बाद भी आपके हाथ में सर्वाधिक शुद्ध बचत यहीं बचेगी।`
                   : `Even after freight (₹${bestMandi.transportCostPerQtl}/q) and hammali (₹${bestMandi.hammaliCostPerQtl}/q), this mandi yields your maximum net in-hand payout.`}
               </p>
+              {onNavigateTab && (
+                <div className="flex items-center gap-2 pt-2">
+                  <button
+                    onClick={() => onNavigateTab('map', bestMandi)}
+                    className="bg-[#07130d] hover:bg-[#143021] text-emerald-300 border border-emerald-600/50 text-xs font-bold px-3 py-1.5 rounded-xl transition flex items-center gap-1.5"
+                  >
+                    <span>🗺️ {lang === 'hi' ? 'मानचित्र पर देखें' : 'View on Map'}</span>
+                  </button>
+                  <button
+                    onClick={() => onNavigateTab('finance', bestMandi)}
+                    className="bg-[#22c55e] hover:bg-[#16a34a] text-[#07130d] text-xs font-black px-3.5 py-1.5 rounded-xl transition flex items-center gap-1.5 shadow-sm"
+                  >
+                    <span>💰 {lang === 'hi' ? 'P&L केंद्र में गणना करें' : 'Calculate P&L'}</span>
+                  </button>
+                </div>
+              )}
             </div>
 
             <div className="bg-[#07130d] border border-[#1b3d2b] rounded-2xl p-4 text-right min-w-[220px]">
